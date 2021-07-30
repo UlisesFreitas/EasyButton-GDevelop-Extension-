@@ -1,0 +1,2 @@
+# EasyButton-GDevelop-Extension-
+EasyButton  Create a button with two animations idle and hover, the button can be identified with a string so later it's easy to manage the states of the button.   After you create one button you can add two kinds of conditions Hover or Clicked Hover means the mouse is over the button so the animation changes and this condition returns true. Clicked means the button was clicked and the condition returns true

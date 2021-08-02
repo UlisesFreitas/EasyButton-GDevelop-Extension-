@@ -699,6 +699,29 @@
                 {
                   "type": {
                     "inverted": false,
+                    "value": "EasyButton::EasyButtonUpdate"
+                  },
+                  "parameters": [
+                    "",
+                    "Button128",
+                    "TextButton128",
+                    "\"StartButton\"",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
                     "value": "EasyButton::EasyButtonHover"
                   },
                   "parameters": [
@@ -762,6 +785,29 @@
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
           "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "EasyButton::EasyButtonUpdate"
+                  },
+                  "parameters": [
+                    "",
+                    "Button256",
+                    "TextButton256",
+                    "\"OtherButton\"",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": []
+            },
             {
               "disabled": false,
               "folded": false,
@@ -862,7 +908,7 @@
       "name": "EasyButton",
       "previewIconUrl": "https://resources.gdevelop-app.com/assets/Icons/gesture-tap-button.svg",
       "shortDescription": "A a simple hoverable button",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "tags": [
         "Button"
       ],
@@ -1750,6 +1796,264 @@
               "name": "Button",
               "optional": false,
               "supplementaryInformation": "Sprite",
+              "type": "objectList"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "Some identifier to later check on conditions and do actions: like StartGame",
+              "longDescription": "",
+              "name": "Identify",
+              "optional": false,
+              "supplementaryInformation": "",
+              "type": "string"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Update button",
+          "fullName": "Update button",
+          "functionType": "Condition",
+          "name": "EasyButtonUpdate",
+          "private": false,
+          "sentence": "Update button: _PARAM1_ with text: _PARAM2_ identified by: _PARAM3_",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::ForEach",
+              "object": "Button",
+              "conditions": [],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::ForEach",
+                  "object": "ButtonTextObject",
+                  "conditions": [],
+                  "actions": [],
+                  "events": [
+                    {
+                      "colorB": 228,
+                      "colorG": 176,
+                      "colorR": 74,
+                      "creationTime": 0,
+                      "disabled": false,
+                      "folded": false,
+                      "name": "Z order",
+                      "source": "",
+                      "type": "BuiltinCommonInstructions::Group",
+                      "events": [
+                        {
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "VarObjet"
+                              },
+                              "parameters": [
+                                "Button",
+                                "__EasyButton_creationID",
+                                "=",
+                                "ButtonTextObject.Variable(__EasyButton_creationID)"
+                              ],
+                              "subInstructions": []
+                            },
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "LinkedObjects::PickObjectsLinkedTo"
+                              },
+                              "parameters": [
+                                "",
+                                "ButtonTextObject",
+                                "Button"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "ChangePlan"
+                              },
+                              "parameters": [
+                                "ButtonTextObject",
+                                "=",
+                                "Button.ZOrder()+1"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "events": []
+                        }
+                      ],
+                      "parameters": []
+                    },
+                    {
+                      "colorB": 228,
+                      "colorG": 176,
+                      "colorR": 74,
+                      "creationTime": 0,
+                      "disabled": false,
+                      "folded": false,
+                      "name": "Change text",
+                      "source": "",
+                      "type": "BuiltinCommonInstructions::Group",
+                      "events": [
+                        {
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "VarObjet"
+                              },
+                              "parameters": [
+                                "Button",
+                                "__EasyButton_creationID",
+                                "=",
+                                "ButtonTextObject.Variable(__EasyButton_creationID)"
+                              ],
+                              "subInstructions": []
+                            },
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "LinkedObjects::PickObjectsLinkedTo"
+                              },
+                              "parameters": [
+                                "",
+                                "ButtonTextObject",
+                                "Button"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "TextObject::String"
+                              },
+                              "parameters": [
+                                "ButtonTextObject",
+                                "=",
+                                "Button.VariableString(__EasyButton_DisplayText)"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "events": []
+                        }
+                      ],
+                      "parameters": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::ForEach",
+              "object": "ButtonTextObject",
+              "conditions": [],
+              "actions": [],
+              "events": [
+                {
+                  "colorB": 228,
+                  "colorG": 176,
+                  "colorR": 74,
+                  "creationTime": 0,
+                  "disabled": false,
+                  "folded": false,
+                  "name": "Positions",
+                  "source": "",
+                  "type": "BuiltinCommonInstructions::Group",
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "VarObjet"
+                          },
+                          "parameters": [
+                            "Button",
+                            "__EasyButton_creationID",
+                            "=",
+                            "ButtonTextObject.Variable(__EasyButton_creationID)"
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "LinkedObjects::PickObjectsLinkedTo"
+                          },
+                          "parameters": [
+                            "",
+                            "ButtonTextObject",
+                            "Button"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "MettreXY"
+                          },
+                          "parameters": [
+                            "ButtonTextObject",
+                            "=",
+                            "(Button.X()+(Button.Width()/2))-(ButtonTextObject.Width()/2)",
+                            "=",
+                            "(Button.Y()+Button.Height()/2)-(ButtonTextObject.Height()/2)"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    }
+                  ],
+                  "parameters": []
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "The button",
+              "longDescription": "",
+              "name": "Button",
+              "optional": false,
+              "supplementaryInformation": "Sprite",
+              "type": "objectList"
+            },
+            {
+              "codeOnly": false,
+              "defaultValue": "",
+              "description": "The text object",
+              "longDescription": "",
+              "name": "ButtonTextObject",
+              "optional": false,
+              "supplementaryInformation": "TextObject::Text",
               "type": "objectList"
             },
             {
